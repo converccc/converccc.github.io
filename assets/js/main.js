@@ -1,57 +1,55 @@
 /* ============================================================
-   作品集 · 交互脚本（路云杰 · AI 产品经理）
-   1. 经历/项目数据渲染
-   2. 鼠标跟随 3D 倾斜
-   3. 滚动显现
-   4. 打字机 / 数字动画 / 导航 / 移动菜单
+   作品集 · 交互脚本 v3
+   数据渲染 / 3D 倾斜 / 滚动进度 / 光晕跟随 / 磁力按钮 /
+   渐进入场 / 打字机 / 数字动画 / 导航 / 移动菜单
    ============================================================ */
 
-/* ---------- 1. 项目/经历数据 ---------- */
+/* ---------- 1. 作品数据 ---------- */
 const projects = [
   {
     title: "AI Agent 自动化工作流",
-    org: "北京微步在线科技（ThreatBook）· 全栈工程师实习",
+    org: "B 端安全数据平台 · AI Agent 自动化",
     date: "2026.05 — 2026.09",
-    desc: "基于公司自研 Agent 平台编排数据校验自动化工作流，设计并封装数据抽取、规则校验、异常告警等多个 Skill 节点，将人工多环节串联为端到端自动化链路。",
-    category: "实习经历",
-    tags: ["Agent 工作流", "Skill 设计", "Prompt 工程", "B 端安全平台"],
+    desc: "基于自研 Agent 平台编排数据校验自动化工作流，设计并封装数据抽取、规则校验、异常告警等多个 Skill 节点，将人工多环节串联为端到端自动化链路。",
+    category: "AI 应用",
+    tags: ["Agent 工作流", "Skill 设计", "Prompt 工程", "自动化"],
     icon: "◇",
-    colors: ["#7c5cff", "#4facfe"],
-    highlights: ["7×24 稳定运行", "Token 成本压缩", "端到端自动化链路"],
+    colors: ["#8b7cff", "#5aa9ff"],
+    highlights: ["7×24 稳定运行", "Token 成本压缩", "端到端自动化"],
     hot: true,
   },
   {
     title: "基于 NLP 的工业互联网漏洞知识图谱",
-    org: "主要负责人 · AI 项目",
+    org: "AI 项目 · 主要负责人",
     date: "2023.07 — 2024.06",
     desc: "针对漏洞信息碎片化痛点，设计「采集 → 清洗 → 信息抽取 → 图谱构建」整体方案，应用 NER 抽取漏洞特征并完成 PyTorch/TensorFlow 与 CUDA 环境适配。",
-    category: "AI 项目",
+    category: "数据智能",
     tags: ["NER", "知识图谱", "PyTorch", "信息抽取"],
     icon: "◈",
-    colors: ["#00e5c4", "#4facfe"],
+    colors: ["#46e0c4", "#5aa9ff"],
     highlights: ["抽取效率 +30%", "数万节点图谱", "自动化分析与预警"],
     hot: true,
   },
   {
     title: "「乐活运动」微信小程序",
-    org: "项目负责人",
+    org: "工程项目 · 项目负责人",
     date: "2024.08 — 2025.04",
-    desc: "对接客户完成需求调研与 PRD 撰写，确定 Vue + SpringBoot + MySQL 前后端分离架构，负责支付接口安全加固与敏感数据 AES 加密存储方案。",
-    category: "工程项目",
+    desc: "对接需求调研与方案设计，确定 Vue + SpringBoot + MySQL 前后端分离架构，负责支付接口安全加固与敏感数据 AES 加密存储方案。",
+    category: "全栈工程",
     tags: ["Vue", "SpringBoot", "MySQL", "JWT / AES"],
     icon: "▦",
-    colors: ["#ff5c9d", "#7c5cff"],
+    colors: ["#ff6ba8", "#8b7cff"],
     highlights: ["数千名用户", "零注入/越权漏洞", "安全日志审计"],
   },
   {
     title: "多线程 TCP 安全日志传输系统",
-    org: "负责人",
+    org: "工程项目 · 负责人",
     date: "2024.01 — 2024.06",
     desc: "面向工业互联网安全日志审计场景，基于 Winsock2 搭建 Server/Client 架构，std::thread 实现多客户端并发，结合 AES 加密与心跳机制保障实时可靠传输。",
-    category: "工程项目",
+    category: "系统开发",
     tags: ["C++", "Winsock2", "多线程", "AES"],
     icon: "⬡",
-    colors: ["#ffb86c", "#ff5c9d"],
+    colors: ["#ffb86c", "#ff6ba8"],
     highlights: ["多客户端并发", "AES 加密", "心跳机制"],
   },
 ];
@@ -69,7 +67,7 @@ function renderProjects() {
       <div class="project-body">
         <div class="project-meta">
           <span class="project-badge">${p.category}</span>
-          ${p.hot ? '<span class="project-badge hot">重点</span>' : ""}
+          ${p.hot ? '<span class="project-badge hot">精选</span>' : ""}
         </div>
         <h3 class="project-title">${p.title}</h3>
         <div class="project-org">${p.org}</div>
@@ -82,47 +80,91 @@ function renderProjects() {
 }
 renderProjects();
 
-/* ---------- 2. 鼠标跟随 3D 倾斜 ---------- */
+/* ---------- 2. 3D 倾斜 ---------- */
 function initTilt(selector, maxRotate = 10) {
   document.querySelectorAll(selector).forEach(el => {
-    const reset = () => {
-      el.style.transform = "";
-      el.style.boxShadow = "";
-    };
+    const reset = () => { el.style.transform = ""; el.style.boxShadow = ""; };
     el.addEventListener("mousemove", e => {
       const r = el.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width - 0.5;
       const py = (e.clientY - r.top) / r.height - 0.5;
-      const rx = (-py * maxRotate).toFixed(2);
-      const ry = (px * maxRotate).toFixed(2);
-      el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-      el.style.boxShadow = `${-px * 20}px ${py * 20 + 16}px 40px rgba(0,0,0,0.45), 0 0 30px rgba(124,92,255,0.18)`;
+      el.style.transform = `perspective(900px) rotateX(${(-py * maxRotate).toFixed(2)}deg) rotateY(${(px * maxRotate).toFixed(2)}deg) translateY(-6px)`;
+      el.style.boxShadow = `${-px * 20}px ${py * 20 + 16}px 45px rgba(0,0,0,0.5), 0 0 32px rgba(139,124,255,0.18)`;
     });
     el.addEventListener("mouseleave", reset);
   });
 }
 initTilt(".project-card", 9);
-initTilt(".glass-card", 10);
+initTilt(".skill-category", 8);
 initTilt(".contact-card", 6);
 
-/* ---------- 3. Hero 视差跟随 ---------- */
+/* ---------- 3. Hero 视差 ---------- */
 const heroVisual = document.getElementById("heroVisual");
 if (heroVisual && window.matchMedia("(pointer:fine)").matches) {
-  document.querySelector(".hero").addEventListener("mousemove", e => {
+  const hero = document.querySelector(".hero");
+  hero.addEventListener("mousemove", e => {
     const r = heroVisual.getBoundingClientRect();
     const px = (e.clientX - (r.left + r.width / 2)) / r.width;
     const py = (e.clientY - (r.top + r.height / 2)) / r.height;
     heroVisual.querySelectorAll("[data-depth]").forEach(el => {
       const d = parseFloat(el.dataset.depth) || 1;
-      el.style.translate = `${(-px * 18 * d).toFixed(1)}px ${(-py * 18 * d).toFixed(1)}px`;
+      el.style.translate = `${(-px * 20 * d).toFixed(1)}px ${(-py * 20 * d).toFixed(1)}px`;
     });
   });
-  document.querySelector(".hero").addEventListener("mouseleave", () => {
+  hero.addEventListener("mouseleave", () => {
     heroVisual.querySelectorAll("[data-depth]").forEach(el => { el.style.translate = ""; });
   });
 }
 
-/* ---------- 4. 滚动显现 ---------- */
+/* ---------- 4. 滚动进度条 + 导航状态 + 背景视差 ---------- */
+const progress = document.getElementById("scrollProgress");
+const header = document.getElementById("siteHeader");
+const orb1 = document.querySelector(".bg-orb-1");
+const orb2 = document.querySelector(".bg-orb-2");
+let ticking = false;
+function onScroll() {
+  const y = window.scrollY;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = h > 0 ? (y / h) * 100 : 0;
+  if (progress) progress.style.width = pct + "%";
+  header.classList.toggle("scrolled", y > 24);
+  if (orb1) orb1.style.transform = `translateY(${y * 0.06}px)`;
+  if (orb2) orb2.style.transform = `translateY(${y * -0.04}px)`;
+  ticking = false;
+}
+window.addEventListener("scroll", () => {
+  if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+}, { passive: true });
+onScroll();
+
+/* ---------- 5. 鼠标光晕跟随 ---------- */
+const glow = document.getElementById("cursorGlow");
+if (glow && window.matchMedia("(pointer:fine)").matches) {
+  let gx = 0, gy = 0, cx = 0, cy = 0, active = false;
+  window.addEventListener("mousemove", e => { gx = e.clientX; gy = e.clientY; if (!active) { cx = gx; cy = gy; glow.style.opacity = "1"; active = true; } }, { passive: true });
+  const loop = () => {
+    cx += (gx - cx) * 0.08;
+    cy += (gy - cy) * 0.08;
+    glow.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(loop);
+  };
+  loop();
+}
+
+/* ---------- 6. 磁力按钮 ---------- */
+if (window.matchMedia("(pointer:fine)").matches) {
+  document.querySelectorAll(".magnetic").forEach(btn => {
+    btn.addEventListener("mousemove", e => {
+      const r = btn.getBoundingClientRect();
+      const mx = e.clientX - (r.left + r.width / 2);
+      const my = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = `translate(${mx * 0.25}px, ${my * 0.25}px)`;
+    });
+    btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+  });
+}
+
+/* ---------- 7. 渐进入场 ---------- */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -133,10 +175,10 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-/* ---------- 5. 数字递增动画 ---------- */
+/* ---------- 8. 数字递增 ---------- */
 function countUp(el) {
   const target = parseInt(el.dataset.count, 10);
-  const duration = 1400;
+  const duration = 1500;
   const start = performance.now();
   const step = (now) => {
     const p = Math.min((now - start) / duration, 1);
@@ -157,35 +199,29 @@ const metaObserver = new IntersectionObserver((entries) => {
 const heroMeta = document.querySelector(".hero-meta");
 if (heroMeta) metaObserver.observe(heroMeta);
 
-/* ---------- 6. 打字机 ---------- */
+/* ---------- 9. 打字机 ---------- */
 const typedEl = document.getElementById("typed");
 if (typedEl) {
-  const words = ["AI 产品经理", "AI 产品探索者", "技术与产品的桥梁", "全栈背景的产品人"];
-  let wi = 0, ci = 0, deleting = false;
+  const words = ["变成真实的产品", "从想法走向落地", "用数据驱动决策"];
+  let wi = 0, ci = words[0].length, deleting = false;
   const tick = () => {
     const word = words[wi];
     typedEl.textContent = word.slice(0, ci);
     if (!deleting) {
-      ci++;
-      if (ci > word.length) { deleting = true; setTimeout(tick, 1800); return; }
-    } else {
       ci--;
-      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+      if (ci === 0) { deleting = true; setTimeout(tick, 500); return; }
+    } else {
+      ci++;
+      if (ci > word.length) { deleting = false; wi = (wi + 1) % words.length; setTimeout(tick, 1800); return; }
     }
-    setTimeout(tick, deleting ? 70 : 130);
+    setTimeout(tick, deleting ? 80 : 45);
   };
   tick();
 }
 
-/* ---------- 7. 导航高亮 / 滚动头部 / 移动菜单 ---------- */
-const header = document.getElementById("siteHeader");
+/* ---------- 10. 导航高亮 / 移动菜单 / 年份 ---------- */
 const navLinks = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll("main section[id]");
-
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 20);
-}, { passive: true });
-
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -208,7 +244,5 @@ if (menuToggle && nav) {
     menuToggle.setAttribute("aria-expanded", "false");
   }));
 }
-
-/* ---------- 8. 年份 ---------- */
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();

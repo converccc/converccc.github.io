@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>路云杰 · AI 产品经理作品集</title>
-  <meta name="description" content="路云杰的个人作品集与技术网站 —— 专注 AI Agent 工作流编排、NLP 信息抽取与知识图谱，兼具全栈工程能力。" />
+  <title>作品集 · Portfolio | AI · Data · Engineering</title>
+  <meta name="description" content="一个聚焦 AI Agent 工作流、NLP 信息抽取与知识图谱的技术作品集，兼具全栈工程实践。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+  <!-- 鼠标光晕 -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <!-- 滚动进度条 -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- 背景装饰 -->
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
@@ -19,18 +24,17 @@
   <!-- 导航栏 -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-inner">
-      <a href="#home" class="logo">
-        <span class="logo-mark">AI</span>
-        <span class="logo-text">路云杰<span class="accent"> · PM</span></span>
+      <a href="#home" class="logo" aria-label="返回首页">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span class="logo-text">PORT<span class="accent">FOLIO</span></span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="主导航">
         <a href="#home" class="nav-link active">首页</a>
-        <a href="#about" class="nav-link">关于</a>
         <a href="#work" class="nav-link">作品</a>
         <a href="#skills" class="nav-link">技术</a>
         <a href="#contact" class="nav-link">联系</a>
       </nav>
-      <a href="#contact" class="btn btn-sm btn-primary nav-cta">联系我</a>
+      <a href="#contact" class="btn btn-sm btn-primary nav-cta">联系合作</a>
       <button class="menu-toggle" id="menuToggle" aria-label="切换菜单" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -44,30 +48,27 @@
         <div class="hero-content">
           <div class="badge reveal">
             <span class="badge-dot"></span>
-            AI 产品 · 数据智能 · 全栈工程
+            AI · DATA · ENGINEERING
           </div>
           <h1 class="hero-title reveal">
-            你好，我是 <span class="gradient-text">路云杰</span><br />
-            一名<span class="type-wrap"><span id="typed">AI 产品经理</span><span class="cursor"></span></span>
+            用技术，把想法<br />
+            <span class="gradient-text" id="typed">变成真实的产品</span><span class="cursor"></span>
           </h1>
           <p class="hero-desc reveal">
-            专注 <strong>AI Agent 工作流编排</strong> 与 <strong>NLP 信息抽取</strong>。
-            能把技术语言翻译成产品方案，也能亲手搭出可跑的原型 Demo —— 在技术与业务的交界处，做真正解决问题的 AI 产品。
+            聚焦 <strong>AI Agent 工作流编排</strong>、<strong>NLP 信息抽取</strong> 与知识图谱构建，
+            在技术与应用的交界处，把复杂问题拆解成优雅、可落地的方案。
           </p>
           <div class="hero-actions reveal">
-            <a href="#work" class="btn btn-primary">
-              查看项目经历
+            <a href="#work" class="btn btn-primary magnetic">
+              浏览作品
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="mailto:973794991@qq.com" class="btn btn-ghost">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
-              联系我
-            </a>
+            <a href="#skills" class="btn btn-ghost magnetic">查看技术栈</a>
           </div>
           <div class="hero-meta reveal">
-            <div class="meta-item"><span class="meta-num" data-count="4">0</span><span class="meta-label">个实战项目</span></div>
+            <div class="meta-item"><span class="meta-num" data-count="4">0</span><span class="meta-label">个精选项目</span></div>
             <div class="meta-divider"></div>
-            <div class="meta-item"><span class="meta-num" data-count="30">0</span><span class="meta-label">抽取效率提升 %</span></div>
+            <div class="meta-item"><span class="meta-num" data-count="30">0</span><span class="meta-label">效率提升 %</span></div>
             <div class="meta-divider"></div>
             <div class="meta-item"><span class="meta-num" data-count="7">0</span><span class="meta-label">×24 稳定运行</span></div>
           </div>
@@ -110,81 +111,32 @@
           <div class="orbit-ring" aria-hidden="true"></div>
         </div>
       </div>
-      <a href="#about" class="scroll-down" aria-label="向下滚动">
+      <a href="#work" class="scroll-down" aria-label="向下滚动">
         <span class="mouse"><span class="wheel"></span></span>
         <span class="scroll-text">向下滚动</span>
       </a>
     </section>
 
-    <!-- 关于 -->
-    <section class="section about" id="about">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-tag">01 / 关于我</span>
-          <h2 class="section-title">技术与产品的<span class="gradient-text">交叉点</span></h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-text reveal">
-            <p class="lead">
-              我是路云杰，专注 AI 产品方向，擅长把技术价值转化为产品价值。
-              在技术与业务的交界处，做真正解决问题的 AI 产品。
-            </p>
-            <p>
-              我主导过基于 NLP 与知识图谱的工业互联网漏洞分析项目，具备数据自动化处理与信息抽取方案设计的完整实战经验；
-              在微步在线实习期间，基于公司自研 Agent 平台完成自动化工作流编排与 Skill 设计。
-            </p>
-            <p>
-              全栈开发背景让我可以独立完成原型 Demo、与研发高效对话，把技术语言转化为清晰的产品方案。
-              我关注可量化的结果——抽取效率、调用成本、系统可用性，而不只是"做了什么"。
-            </p>
-          </div>
-          <div class="about-cards reveal">
-            <div class="tilt-card glass-card">
-              <span class="card-icon icon-purple">🧠</span>
-              <h3>AI 产品思维</h3>
-              <p>理解 RAG、Prompt 工程、Context 管理，能把大模型能力翻译成产品方案。</p>
-            </div>
-            <div class="tilt-card glass-card">
-              <span class="card-icon icon-blue">⚙️</span>
-              <h3>工程落地</h3>
-              <p>全栈背景，能独立完成原型 Demo，与研发同频沟通、高效协作。</p>
-            </div>
-            <div class="tilt-card glass-card">
-              <span class="card-icon icon-pink">📊</span>
-              <h3>数据驱动</h3>
-              <p>关注抽取效率、调用成本、系统可用性等可量化指标，用数据验证方案。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 经历与项目 -->
+    <!-- 作品 -->
     <section class="section projects" id="work">
       <div class="container">
         <div class="section-heading reveal">
-          <span class="section-tag">02 / 经历与项目</span>
-          <h2 class="section-title">从需求到<span class="gradient-text">落地</span></h2>
-          <p class="section-sub">每一段经历都围绕一个真实问题展开。点击卡片查看详情。</p>
+          <span class="section-tag">01 / SELECTED WORK</span>
+          <h2 class="section-title">精选<span class="gradient-text">作品</span></h2>
+          <p class="section-sub">从问题定义到方案落地，每个项目都是一次完整的工程实践。</p>
         </div>
         <div class="projects-grid" id="projectsGrid">
-          <!-- 项目卡片由 JS 渲染，便于统一管理 -->
-        </div>
-        <div class="projects-more reveal">
-          <a href="#contact" class="btn btn-ghost">
-            聊聊合作
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+          <!-- 项目卡片由 JS 渲染 -->
         </div>
       </div>
     </section>
 
-    <!-- 能力 -->
+    <!-- 技术 -->
     <section class="section skills" id="skills">
       <div class="container">
         <div class="section-heading reveal">
-          <span class="section-tag">03 / 专业能力</span>
-          <h2 class="section-title">我的<span class="gradient-text">工具箱</span></h2>
+          <span class="section-tag">02 / TECH STACK</span>
+          <h2 class="section-title">技术<span class="gradient-text">能力</span></h2>
         </div>
         <div class="skills-wrap">
           <div class="skill-category reveal">
@@ -201,14 +153,13 @@
             </div>
           </div>
           <div class="skill-category reveal">
-            <h3 class="skill-cat-title"><span>产品能力</span> Product</h3>
+            <h3 class="skill-cat-title"><span>产品与方案</span> Product</h3>
             <div class="skill-tags">
               <span class="skill-tag" data-level="经验">需求调研</span>
               <span class="skill-tag" data-level="经验">PRD 撰写</span>
               <span class="skill-tag" data-level="经验">功能方案设计</span>
               <span class="skill-tag">数据指标思维</span>
               <span class="skill-tag">成本 / 效能优化</span>
-              <span class="skill-tag">用户反馈转化</span>
               <span class="skill-tag">原型 Demo</span>
             </div>
           </div>
@@ -231,13 +182,13 @@
       <div class="container">
         <div class="contact-card tilt-card reveal">
           <div class="contact-glow" aria-hidden="true"></div>
-          <span class="section-tag">04 / 联系我</span>
-          <h2 class="contact-title">聊聊<span class="gradient-text">AI 产品</span>与技术</h2>
+          <span class="section-tag">03 / GET IN TOUCH</span>
+          <h2 class="contact-title">聊聊<span class="gradient-text">合作</span>的可能</h2>
           <p class="contact-desc">
-            无论是项目合作、技术交流，还是想探讨一个有趣的 AI 产品想法，都欢迎联系我。
+            无论是项目合作、技术交流，还是想探讨一个有趣的 AI 产品想法，都欢迎联系。
           </p>
           <div class="contact-actions">
-            <a href="mailto:973794991@qq.com" class="btn btn-primary">
+            <a href="mailto:973794991@qq.com" class="btn btn-primary magnetic">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
               发邮件
             </a>
@@ -253,7 +204,7 @@
   <!-- 页脚 -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>© <span id="year">2026</span> 路云杰 · AI 产品经理作品集</span>
+      <span>© <span id="year">2026</span> Portfolio · Built with care &amp; code</span>
       <a href="#home">回到顶部 ↑</a>
     </div>
   </footer>
