@@ -17,7 +17,7 @@ const projects = [
     tags: ["Agent 工作流", "Skill 设计", "Prompt 工程", "B 端安全平台"],
     icon: "◇",
     colors: ["#7c5cff", "#4facfe"],
-    highlights: ["7×24 稳定运行", "Token 成本压缩", "实习生获部门奖金"],
+    highlights: ["7×24 稳定运行", "Token 成本压缩", "端到端自动化链路"],
     hot: true,
   },
   {
