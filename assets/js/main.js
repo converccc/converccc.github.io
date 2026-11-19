@@ -60,7 +60,7 @@ function renderProjects() {
   grid.innerHTML = projects.map((p, i) => `
     <article class="project-card reveal" style="transition-delay:${(i % 3) * 0.08}s" data-index="${i}">
       <div class="project-thumb">
-        <div class="thumb-glow" style="background:${p.colors[0]}"></div>
+        <div class="thumb-glow" style="color:${p.colors[0]}"></div>
         <span class="thumb-icon" style="text-shadow:0 0 30px ${p.colors[1]}">${p.icon}</span>
         <span class="project-date">${p.date}</span>
       </div>
@@ -116,39 +116,51 @@ if (heroVisual && window.matchMedia("(pointer:fine)").matches) {
   });
 }
 
-/* ---------- 4. 滚动进度条 + 导航状态 + 背景视差 ---------- */
+/* ---------- 4. 滚动进度条 + 导航状态（rAF 节流 + 缓存布局） ---------- */
 const progress = document.getElementById("scrollProgress");
 const header = document.getElementById("siteHeader");
-const orb1 = document.querySelector(".bg-orb-1");
-const orb2 = document.querySelector(".bg-orb-2");
-let ticking = false;
+let ticking = false, maxScroll = 1, wasScrolled = false;
+function measure() {
+  maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+}
 function onScroll() {
   const y = window.scrollY;
-  const h = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = h > 0 ? (y / h) * 100 : 0;
-  if (progress) progress.style.width = pct + "%";
-  header.classList.toggle("scrolled", y > 24);
-  if (orb1) orb1.style.transform = `translateY(${y * 0.06}px)`;
-  if (orb2) orb2.style.transform = `translateY(${y * -0.04}px)`;
+  // 用 transform scaleX 代替修改 width，避免触发重排
+  if (progress) progress.style.transform = `scaleX(${y / maxScroll})`;
+  const scrolled = y > 24;
+  if (scrolled !== wasScrolled) {
+    header.classList.toggle("scrolled", scrolled);
+    wasScrolled = scrolled;
+  }
   ticking = false;
 }
+let scrollEndTimer = null;
 window.addEventListener("scroll", () => {
+  // 滚动期间暂停装饰性无限动画，把合成/主线程资源让给滚动本身
+  document.body.classList.add("is-scrolling");
+  clearTimeout(scrollEndTimer);
+  scrollEndTimer = setTimeout(() => document.body.classList.remove("is-scrolling"), 180);
   if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
 }, { passive: true });
+window.addEventListener("resize", measure, { passive: true });
+measure();
 onScroll();
 
-/* ---------- 5. 鼠标光晕跟随 ---------- */
+/* ---------- 5. 鼠标光晕（交给 CSS transition 合成，不占用主线程 rAF） ---------- */
 const glow = document.getElementById("cursorGlow");
 if (glow && window.matchMedia("(pointer:fine)").matches) {
-  let gx = 0, gy = 0, cx = 0, cy = 0, active = false;
-  window.addEventListener("mousemove", e => { gx = e.clientX; gy = e.clientY; if (!active) { cx = gx; cy = gy; glow.style.opacity = "1"; active = true; } }, { passive: true });
-  const loop = () => {
-    cx += (gx - cx) * 0.08;
-    cy += (gy - cy) * 0.08;
-    glow.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
-    requestAnimationFrame(loop);
-  };
-  loop();
+  let moveTick = false, px = 0, py = 0;
+  window.addEventListener("mousemove", e => {
+    px = e.clientX; py = e.clientY;
+    if (!moveTick) {
+      moveTick = true;
+      requestAnimationFrame(() => {
+        glow.style.transform = `translate3d(${px}px, ${py}px, 0) translate(-50%, -50%)`;
+        glow.style.opacity = "1";
+        moveTick = false;
+      });
+    }
+  }, { passive: true });
 }
 
 /* ---------- 6. 磁力按钮 ---------- */
@@ -205,6 +217,11 @@ if (typedEl) {
   const words = ["变成真实的产品", "从想法走向落地", "用数据驱动决策"];
   let wi = 0, ci = words[0].length, deleting = false;
   const tick = () => {
+    // 滚动过程中暂停打字机，避免与滚动争抢主线程
+    if (document.body.classList.contains("is-scrolling")) {
+      setTimeout(tick, 120);
+      return;
+    }
     const word = words[wi];
     typedEl.textContent = word.slice(0, ci);
     if (!deleting) {
