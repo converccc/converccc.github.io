@@ -1,66 +1,58 @@
 /* ============================================================
-   作品集 · 交互脚本
-   1. 作品卡片数据渲染
+   作品集 · 交互脚本（路云杰 · AI 产品经理）
+   1. 经历/项目数据渲染
    2. 鼠标跟随 3D 倾斜
    3. 滚动显现
    4. 打字机 / 数字动画 / 导航 / 移动菜单
    ============================================================ */
 
-/* ---------- 1. 作品数据 ---------- */
+/* ---------- 1. 项目/经历数据 ---------- */
 const projects = [
   {
-    title: "Nebula 数据可视化平台",
-    desc: "面向业务团队的实时数据看板，支持拖拽搭建图表、多数据源接入与权限管理。",
-    category: "Web 应用",
-    tags: ["React", "TypeScript", "ECharts", "Node.js"],
-    icon: "◈",
-    colors: ["#7c5cff", "#4facfe"],
-    demo: "#", code: "#", hot: true,
-  },
-  {
-    title: "Flow 协作任务系统",
-    desc: "类 Trello 的看板协作工具，支持实时同步、评论与工作流自动化。",
-    category: "生产力工具",
-    tags: ["Next.js", "WebSocket", "PostgreSQL"],
-    icon: "▦",
-    colors: ["#00e5c4", "#4facfe"],
-    demo: "#", code: "#",
-  },
-  {
-    title: "DevKit 组件库",
-    desc: "企业级 React 组件库，含 60+ 组件、主题定制与完整文档站。",
-    category: "开源项目",
-    tags: ["React", "Storybook", "Tailwind"],
-    icon: "⬡",
-    colors: ["#ff5c9d", "#7c5cff"],
-    demo: "#", code: "#",
-  },
-  {
-    title: "CloudDeploy 部署平台",
-    desc: "简化 CI/CD 流程的轻量平台，一键构建、预览与回滚前端项目。",
-    category: "DevOps",
-    tags: ["Go", "Docker", "GitHub Actions"],
-    icon: "☁",
-    colors: ["#4facfe", "#00e5c4"],
-    demo: "#", code: "#",
-  },
-  {
-    title: "Ink 博客引擎",
-    desc: "基于 Markdown 的极简博客系统，支持标签、搜索与静态生成。",
-    category: "开源项目",
-    tags: ["Astro", "Markdown", "Vercel"],
-    icon: "✎",
-    colors: ["#7c5cff", "#ff5c9d"],
-    demo: "#", code: "#",
-  },
-  {
-    title: "Shopify 电商中台",
-    desc: "多商户电商后台，订单、库存、营销与数据分析一体化。",
-    category: "Web 应用",
-    tags: ["Vue 3", "Nuxt", "Redis"],
+    title: "AI Agent 自动化工作流",
+    org: "北京微步在线科技（ThreatBook）· 全栈工程师实习",
+    date: "2026.05 — 2026.09",
+    desc: "基于公司自研 Agent 平台编排数据校验自动化工作流，设计并封装数据抽取、规则校验、异常告警等多个 Skill 节点，将人工多环节串联为端到端自动化链路。",
+    category: "实习经历",
+    tags: ["Agent 工作流", "Skill 设计", "Prompt 工程", "B 端安全平台"],
     icon: "◇",
+    colors: ["#7c5cff", "#4facfe"],
+    highlights: ["7×24 稳定运行", "Token 成本压缩", "实习生获部门奖金"],
+    hot: true,
+  },
+  {
+    title: "基于 NLP 的工业互联网漏洞知识图谱",
+    org: "主要负责人 · AI 项目",
+    date: "2023.07 — 2024.06",
+    desc: "针对漏洞信息碎片化痛点，设计「采集 → 清洗 → 信息抽取 → 图谱构建」整体方案，应用 NER 抽取漏洞特征并完成 PyTorch/TensorFlow 与 CUDA 环境适配。",
+    category: "AI 项目",
+    tags: ["NER", "知识图谱", "PyTorch", "信息抽取"],
+    icon: "◈",
+    colors: ["#00e5c4", "#4facfe"],
+    highlights: ["抽取效率 +30%", "数万节点图谱", "自动化分析与预警"],
+    hot: true,
+  },
+  {
+    title: "「乐活运动」微信小程序",
+    org: "项目负责人",
+    date: "2024.08 — 2025.04",
+    desc: "对接客户完成需求调研与 PRD 撰写，确定 Vue + SpringBoot + MySQL 前后端分离架构，负责支付接口安全加固与敏感数据 AES 加密存储方案。",
+    category: "工程项目",
+    tags: ["Vue", "SpringBoot", "MySQL", "JWT / AES"],
+    icon: "▦",
+    colors: ["#ff5c9d", "#7c5cff"],
+    highlights: ["数千名用户", "零注入/越权漏洞", "安全日志审计"],
+  },
+  {
+    title: "多线程 TCP 安全日志传输系统",
+    org: "负责人",
+    date: "2024.01 — 2024.06",
+    desc: "面向工业互联网安全日志审计场景，基于 Winsock2 搭建 Server/Client 架构，std::thread 实现多客户端并发，结合 AES 加密与心跳机制保障实时可靠传输。",
+    category: "工程项目",
+    tags: ["C++", "Winsock2", "多线程", "AES"],
+    icon: "⬡",
     colors: ["#ffb86c", "#ff5c9d"],
-    demo: "#", code: "#",
+    highlights: ["多客户端并发", "AES 加密", "心跳机制"],
   },
 ];
 
@@ -72,19 +64,18 @@ function renderProjects() {
       <div class="project-thumb">
         <div class="thumb-glow" style="background:${p.colors[0]}"></div>
         <span class="thumb-icon" style="text-shadow:0 0 30px ${p.colors[1]}">${p.icon}</span>
+        <span class="project-date">${p.date}</span>
       </div>
       <div class="project-body">
         <div class="project-meta">
           <span class="project-badge">${p.category}</span>
-          ${p.hot ? '<span class="project-badge hot">热门</span>' : ""}
+          ${p.hot ? '<span class="project-badge hot">重点</span>' : ""}
         </div>
         <h3 class="project-title">${p.title}</h3>
+        <div class="project-org">${p.org}</div>
         <p class="project-desc">${p.desc}</p>
+        <div class="project-highlights">${p.highlights.map(h => `<span class="hl">✦ ${h}</span>`).join("")}</div>
         <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
-        <div class="project-links">
-          <a href="${p.demo}" target="_blank" rel="noopener">在线预览 ↗</a>
-          <a href="${p.code}" target="_blank" rel="noopener">源码 →</a>
-        </div>
       </div>
     </article>
   `).join("");
@@ -169,7 +160,7 @@ if (heroMeta) metaObserver.observe(heroMeta);
 /* ---------- 6. 打字机 ---------- */
 const typedEl = document.getElementById("typed");
 if (typedEl) {
-  const words = ["全栈开发者", "架构爱好者", "开源贡献者", "问题解决者"];
+  const words = ["AI 产品经理", "AI 产品探索者", "技术与产品的桥梁", "全栈背景的产品人"];
   let wi = 0, ci = 0, deleting = false;
   const tick = () => {
     const word = words[wi];
