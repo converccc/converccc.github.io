@@ -7,18 +7,6 @@
 /* ---------- 1. 作品数据 ---------- */
 const projects = [
   {
-    title: "AI Agent 自动化工作流",
-    org: "B 端安全数据平台 · AI Agent 自动化",
-    date: "2026.05 — 2026.09",
-    desc: "基于自研 Agent 平台编排数据校验自动化工作流，设计并封装数据抽取、规则校验、异常告警等多个 Skill 节点，将人工多环节串联为端到端自动化链路。",
-    category: "AI 应用",
-    tags: ["Agent 工作流", "Skill 设计", "Prompt 工程", "自动化"],
-    icon: "◇",
-    colors: ["#8b7cff", "#5aa9ff"],
-    highlights: ["7×24 稳定运行", "Token 成本压缩", "端到端自动化"],
-    hot: true,
-  },
-  {
     title: "基于 NLP 的工业互联网漏洞知识图谱",
     org: "AI 项目 · 主要负责人",
     date: "2023.07 — 2024.06",

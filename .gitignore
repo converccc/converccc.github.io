@@ -1,2 +1,5 @@
 # 含明文 GitHub token，切勿提交到公开仓库
 DEPLOY_CREDENTIALS.md
+
+# 内部方案与工作笔记，不对外公开
+PROJECT_REBUILD_PLAN.md

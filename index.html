@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>作品集 · Portfolio | AI · Data · Engineering</title>
-  <meta name="description" content="一个聚焦 AI Agent 工作流、NLP 信息抽取与知识图谱的技术作品集，兼具全栈工程实践。" />
+  <meta name="description" content="一个聚焦 NLP 信息抽取、知识图谱构建与全栈工程实践的技术作品集。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -55,7 +55,7 @@
             <span class="gradient-text" id="typed">变成真实的产品</span><span class="cursor"></span>
           </h1>
           <p class="hero-desc reveal">
-            聚焦 <strong>AI Agent 工作流编排</strong>、<strong>NLP 信息抽取</strong> 与知识图谱构建，
+            聚焦 <strong>NLP 信息抽取</strong>、<strong>知识图谱构建</strong> 与全栈工程实践，
             在技术与应用的交界处，把复杂问题拆解成优雅、可落地的方案。
           </p>
           <div class="hero-actions reveal">
@@ -66,24 +66,24 @@
             <a href="#skills" class="btn btn-ghost magnetic">查看技术栈</a>
           </div>
           <div class="hero-meta reveal">
-            <div class="meta-item"><span class="meta-num" data-count="4">0</span><span class="meta-label">个精选项目</span></div>
+            <div class="meta-item"><span class="meta-num" data-count="3">0</span><span class="meta-label">个精选项目</span></div>
             <div class="meta-divider"></div>
-            <div class="meta-item"><span class="meta-num" data-count="30">0</span><span class="meta-label">效率提升 %</span></div>
+            <div class="meta-item"><span class="meta-num" data-count="4">0</span><span class="meta-label">类技术方向</span></div>
             <div class="meta-divider"></div>
-            <div class="meta-item"><span class="meta-num" data-count="7">0</span><span class="meta-label">×24 稳定运行</span></div>
+            <div class="meta-item"><span class="meta-num" data-count="3">0</span><span class="meta-label">端完整链路</span></div>
           </div>
         </div>
 
-        <!-- 3D 视觉区：AI Agent 工作流 -->
+        <!-- 3D 视觉区：知识图谱抽取链路 -->
         <div class="hero-visual reveal" id="heroVisual">
           <div class="visual-glow"></div>
           <div class="flow-card floating" data-depth="1.2">
             <div class="flow-card-header">
               <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-              <span class="code-filename">agent-workflow.yaml</span>
+              <span class="code-filename">kg-pipeline.py</span>
             </div>
             <div class="flow-body">
-              <div class="flow-title"><span class="flow-ico">◇</span> 数据校验自动化 Workflow</div>
+              <div class="flow-title"><span class="flow-ico">◈</span> 漏洞知识图谱抽取管线</div>
               <div class="flow-nodes">
                 <div class="flow-node"><span>采集</span></div>
                 <span class="flow-arrow">→</span>
@@ -91,22 +91,22 @@
                 <span class="flow-arrow">→</span>
                 <div class="flow-node active"><span>NER 抽取</span></div>
                 <span class="flow-arrow">→</span>
-                <div class="flow-node"><span>告警</span></div>
+                <div class="flow-node"><span>入库</span></div>
               </div>
               <div class="flow-log">
-                <div><span class="log-ok">●</span> Skill 节点封装完成 <span class="log-time">7×24</span></div>
-                <div><span class="log-ok">●</span> Prompt 精简 · Token 成本优化 <span class="log-time">↓</span></div>
-                <div><span class="log-warn">●</span> 异常规则校验 <span class="log-time">AUTO</span></div>
+                <div><span class="log-ok">●</span> 实体识别 · 厂商 / 产品 / CWE <span class="log-time">OK</span></div>
+                <div><span class="log-ok">●</span> 关系抽取 · 影响 / 利用 / 修复 <span class="log-time">OK</span></div>
+                <div><span class="log-warn">●</span> 图谱写入 Neo4j <span class="log-time">SYNC</span></div>
               </div>
             </div>
           </div>
           <div class="mini-card mini-card-1 floating" data-depth="2">
             <span class="mini-icon">⚡</span>
-            <div><div class="mini-title">端到端自动化</div><div class="mini-sub">人工环节 → 自动化链路</div></div>
+            <div><div class="mini-title">端到端链路</div><div class="mini-sub">原文 → 实体 → 图谱</div></div>
           </div>
           <div class="mini-card mini-card-2 floating" data-depth="2.6">
             <span class="mini-icon mini-icon-green">●</span>
-            <div><div class="mini-title">Token 成本优化</div><div class="mini-sub">Prompt 精简 · 节点合并</div></div>
+            <div><div class="mini-title">图谱可查询</div><div class="mini-sub">Cypher · 关联追溯</div></div>
           </div>
           <div class="orbit-ring" aria-hidden="true"></div>
         </div>
