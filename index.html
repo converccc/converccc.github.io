@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lin Dev · 全栈开发作品集</title>
+  <meta name="description" content="Lin 的个人作品集，展示全栈开发项目、技术文章与开源贡献。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- 背景装饰 -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+
+  <!-- 导航栏 -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span class="logo-text">Lin<span class="accent">Dev</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="#home" class="nav-link active">首页</a>
+        <a href="#about" class="nav-link">关于</a>
+        <a href="#projects" class="nav-link">作品</a>
+        <a href="#skills" class="nav-link">技能</a>
+        <a href="#contact" class="nav-link">联系</a>
+      </nav>
+      <a href="#contact" class="btn btn-sm btn-primary nav-cta">聊聊合作</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="切换菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="badge reveal">
+            <span class="badge-dot"></span>
+            可接受新的合作机会
+          </div>
+          <h1 class="hero-title reveal">
+            嗨，我是 <span class="gradient-text">Lin</span><br />
+            一名<span class="type-wrap"><span id="typed">全栈开发者</span><span class="cursor"></span></span>
+          </h1>
+          <p class="hero-desc reveal">
+            热爱把复杂的问题，拆解成优雅的代码。专注于 Web 全栈开发、架构设计与开发者体验，
+            用技术把想法变成真实可用的产品。
+          </p>
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-primary">
+              查看作品
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-ghost">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+              GitHub
+            </a>
+          </div>
+          <div class="hero-meta reveal">
+            <div class="meta-item"><span class="meta-num" data-count="5">0</span><span class="meta-label">年开发经验</span></div>
+            <div class="meta-divider"></div>
+            <div class="meta-item"><span class="meta-num" data-count="30">0</span><span class="meta-label">完成项目</span></div>
+            <div class="meta-divider"></div>
+            <div class="meta-item"><span class="meta-num" data-count="12">0</span><span class="meta-label">开源贡献</span></div>
+          </div>
+        </div>
+
+        <!-- 3D 视觉区 -->
+        <div class="hero-visual reveal" id="heroVisual">
+          <div class="visual-glow"></div>
+          <!-- 主卡片：代码窗口 -->
+          <div class="code-card floating" data-depth="1.2">
+            <div class="code-card-header">
+              <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+              <span class="code-filename">portfolio.ts</span>
+            </div>
+            <pre class="code-body"><code><span class="c-comment">// 用代码构建想象</span>
+<span class="c-key">const</span> <span class="c-var">developer</span> = {
+  name: <span class="c-str">"Lin"</span>,
+  role: <span class="c-str">"FullStack"</span>,
+  passion: <span class="c-str">"♥"</span>,
+  <span class="c-fn">build</span>() {
+    <span class="c-key">return</span> <span class="c-str">"something amazing"</span>;
+  }
+};
+
+<span class="c-fn">export default</span> developer;</code></pre>
+          </div>
+          <!-- 悬浮小卡片 -->
+          <div class="mini-card mini-card-1 floating" data-depth="2">
+            <span class="mini-icon">⚡</span>
+            <div><div class="mini-title">高性能</div><div class="mini-sub">Lighthouse 98+</div></div>
+          </div>
+          <div class="mini-card mini-card-2 floating" data-depth="2.6">
+            <span class="mini-icon mini-icon-green">●</span>
+            <div><div class="mini-title">持续交付</div><div class="mini-sub">CI/CD 自动化</div></div>
+          </div>
+          <!-- 旋转的装饰环 -->
+          <div class="orbit-ring" aria-hidden="true"></div>
+        </div>
+      </div>
+      <a href="#about" class="scroll-down" aria-label="向下滚动">
+        <span class="mouse"><span class="wheel"></span></span>
+        <span class="scroll-text">向下滚动</span>
+      </a>
+    </section>
+
+    <!-- 关于 -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-tag">01 / 关于我</span>
+          <h2 class="section-title">不只是写代码，<span class="gradient-text">更是解决问题</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="lead">
+              我是一名拥有 5 年经验的全栈开发者，擅长从 0 到 1 构建产品，
+              并把它打磨到可以支撑真实用户。
+            </p>
+            <p>
+              我的工作覆盖前端体验、后端架构与 DevOps。喜欢在设计与工程的交叉点思考，
+              相信好的代码不仅要能跑，还要易读、可维护、让人愉悦。
+            </p>
+            <p>
+              工作之外，我写技术博客、维护开源项目，也乐于和同行交流踩过的坑。
+            </p>
+            <div class="about-facts">
+              <div class="fact"><span class="fact-icon">📍</span><div><strong>坐标</strong><span>中国 · 远程友好</span></div></div>
+              <div class="fact"><span class="fact-icon">💼</span><div><strong>状态</strong><span>自由职业 / 合作中</span></div></div>
+              <div class="fact"><span class="fact-icon">🎯</span><div><strong>专注</strong><span>Web 全栈 · 架构设计</span></div></div>
+            </div>
+          </div>
+          <div class="about-cards reveal">
+            <div class="tilt-card glass-card">
+              <span class="card-icon icon-purple">🧠</span>
+              <h3>工程思维</h3>
+              <p>把复杂需求拆解成清晰、可扩展的系统设计。</p>
+            </div>
+            <div class="tilt-card glass-card">
+              <span class="card-icon icon-blue">🎨</span>
+              <h3>体验优先</h3>
+              <p>在细节里打磨流畅、克制且有温度的用户体验。</p>
+            </div>
+            <div class="tilt-card glass-card">
+              <span class="card-icon icon-pink">🚀</span>
+              <h3>快速交付</h3>
+              <p>用自动化与最佳实践，让想法更快落地。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 作品 -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-tag">02 / 精选作品</span>
+          <h2 class="section-title">近期<span class="gradient-text">项目实践</span></h2>
+          <p class="section-sub">每一个项目都是一次完整的思考与落地。点击卡片查看详情。</p>
+        </div>
+        <div class="projects-grid" id="projectsGrid">
+          <!-- 项目卡片由 JS 渲染，便于统一管理 -->
+        </div>
+        <div class="projects-more reveal">
+          <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-ghost">
+            在 GitHub 查看更多
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技能 -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-tag">03 / 技术栈</span>
+          <h2 class="section-title">我的<span class="gradient-text">工具箱</span></h2>
+        </div>
+        <div class="skills-wrap">
+          <div class="skill-category reveal">
+            <h3 class="skill-cat-title"><span>前端</span> Frontend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag" data-level="精通">TypeScript</span>
+              <span class="skill-tag" data-level="精通">React</span>
+              <span class="skill-tag" data-level="熟练">Next.js</span>
+              <span class="skill-tag" data-level="熟练">Vue 3</span>
+              <span class="skill-tag" data-level="熟练">Tailwind CSS</span>
+              <span class="skill-tag" data-level="了解">Astro</span>
+              <span class="skill-tag" data-level="了解">Three.js</span>
+            </div>
+          </div>
+          <div class="skill-category reveal">
+            <h3 class="skill-cat-title"><span>后端</span> Backend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag" data-level="精通">Node.js</span>
+              <span class="skill-tag" data-level="熟练">Python</span>
+              <span class="skill-tag" data-level="熟练">PostgreSQL</span>
+              <span class="skill-tag" data-level="熟练">Redis</span>
+              <span class="skill-tag" data-level="了解">Go</span>
+              <span class="skill-tag" data-level="了解">MongoDB</span>
+            </div>
+          </div>
+          <div class="skill-category reveal">
+            <h3 class="skill-cat-title"><span>DevOps & 其它</span> Others</h3>
+            <div class="skill-tags">
+              <span class="skill-tag" data-level="熟练">Docker</span>
+              <span class="skill-tag" data-level="熟练">GitHub Actions</span>
+              <span class="skill-tag" data-level="熟练">AWS / Vercel</span>
+              <span class="skill-tag" data-level="了解">Kubernetes</span>
+              <span class="skill-tag" data-level="了解">Figma</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline reveal">
+          <h3 class="timeline-title">成长轨迹</h3>
+          <div class="timeline-track">
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <span class="timeline-year">2024 — 至今</span>
+              <h4>高级全栈工程师 · Freelance</h4>
+              <p>为创业公司提供从架构设计到上线的全流程技术服务。</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <span class="timeline-year">2022 — 2024</span>
+              <h4>全栈工程师 · 某科技公司</h4>
+              <p>主导核心产品重构，性能提升 40%，支撑百万级用户。</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <span class="timeline-year">2020 — 2022</span>
+              <h4>前端工程师 · 某互联网公司</h4>
+              <p>负责 Web 平台开发，沉淀组件库与设计系统。</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <span class="timeline-year">2020</span>
+              <h4>起点 · Hello World</h4>
+              <p>写下第一行代码，从此一发不可收拾。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系 -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-card tilt-card reveal">
+          <div class="contact-glow" aria-hidden="true"></div>
+          <span class="section-tag">04 / 联系我</span>
+          <h2 class="contact-title">有想法？<span class="gradient-text">一起聊聊</span></h2>
+          <p class="contact-desc">
+            无论是项目合作、技术交流，还是只想打个招呼，我都乐意倾听。
+            通常在 24 小时内回复。
+          </p>
+          <div class="contact-actions">
+            <a href="mailto:hello@example.com" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+              发邮件
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+          </div>
+          <div class="contact-links">
+            <a href="#" aria-label="Twitter">Twitter</a>
+            <span>·</span>
+            <a href="#" aria-label="掘金">掘金</a>
+            <span>·</span>
+            <a href="#" aria-label="知乎">知乎</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Lin Dev. Built with care &amp; code.</span>
+      <a href="#home">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
