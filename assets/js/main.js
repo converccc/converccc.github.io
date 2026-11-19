@@ -84,14 +84,18 @@ renderProjects();
 function initTilt(selector, maxRotate = 10) {
   document.querySelectorAll(selector).forEach(el => {
     const reset = () => { el.style.transform = ""; el.style.boxShadow = ""; };
+    let rect = null;
+    el.addEventListener("mouseenter", () => { rect = el.getBoundingClientRect(); });
     el.addEventListener("mousemove", e => {
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
+      // 滚动期间跳过，避免 getBoundingClientRect 强制布局与滚动冲突
+      if (document.body.classList.contains("is-scrolling")) return;
+      if (!rect) rect = el.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
       el.style.transform = `perspective(900px) rotateX(${(-py * maxRotate).toFixed(2)}deg) rotateY(${(px * maxRotate).toFixed(2)}deg) translateY(-6px)`;
       el.style.boxShadow = `${-px * 20}px ${py * 20 + 16}px 45px rgba(0,0,0,0.5), 0 0 32px rgba(139,124,255,0.18)`;
     });
-    el.addEventListener("mouseleave", reset);
+    el.addEventListener("mouseleave", () => { rect = null; reset(); });
   });
 }
 initTilt(".project-card", 9);
@@ -102,17 +106,23 @@ initTilt(".contact-card", 6);
 const heroVisual = document.getElementById("heroVisual");
 if (heroVisual && window.matchMedia("(pointer:fine)").matches) {
   const hero = document.querySelector(".hero");
+  const layers = heroVisual.querySelectorAll("[data-depth]");
+  let rect = null;
+  hero.addEventListener("mouseenter", () => { rect = heroVisual.getBoundingClientRect(); });
   hero.addEventListener("mousemove", e => {
-    const r = heroVisual.getBoundingClientRect();
-    const px = (e.clientX - (r.left + r.width / 2)) / r.width;
-    const py = (e.clientY - (r.top + r.height / 2)) / r.height;
-    heroVisual.querySelectorAll("[data-depth]").forEach(el => {
+    // 滚动期间跳过视差计算，避免强制布局
+    if (document.body.classList.contains("is-scrolling")) return;
+    if (!rect) rect = heroVisual.getBoundingClientRect();
+    const px = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
+    const py = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
+    layers.forEach(el => {
       const d = parseFloat(el.dataset.depth) || 1;
       el.style.translate = `${(-px * 20 * d).toFixed(1)}px ${(-py * 20 * d).toFixed(1)}px`;
     });
   });
   hero.addEventListener("mouseleave", () => {
-    heroVisual.querySelectorAll("[data-depth]").forEach(el => { el.style.translate = ""; });
+    rect = null;
+    layers.forEach(el => { el.style.translate = ""; });
   });
 }
 
@@ -166,13 +176,16 @@ if (glow && window.matchMedia("(pointer:fine)").matches) {
 /* ---------- 6. 磁力按钮 ---------- */
 if (window.matchMedia("(pointer:fine)").matches) {
   document.querySelectorAll(".magnetic").forEach(btn => {
+    let rect = null;
+    btn.addEventListener("mouseenter", () => { rect = btn.getBoundingClientRect(); });
     btn.addEventListener("mousemove", e => {
-      const r = btn.getBoundingClientRect();
-      const mx = e.clientX - (r.left + r.width / 2);
-      const my = e.clientY - (r.top + r.height / 2);
+      if (document.body.classList.contains("is-scrolling")) return;
+      if (!rect) rect = btn.getBoundingClientRect();
+      const mx = e.clientX - (rect.left + rect.width / 2);
+      const my = e.clientY - (rect.top + rect.height / 2);
       btn.style.transform = `translate(${mx * 0.25}px, ${my * 0.25}px)`;
     });
-    btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+    btn.addEventListener("mouseleave", () => { rect = null; btn.style.transform = ""; });
   });
 }
 
